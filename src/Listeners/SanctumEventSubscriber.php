@@ -1,12 +1,12 @@
 <?php
 
-namespace ALajusticia\Logins\Listeners;
+namespace Adzinpratama\TrackingLogin\Listeners;
 
-use ALajusticia\Logins\CurrentLogin;
-use ALajusticia\Logins\Events\LoggedIn;
-use ALajusticia\Logins\Factories\LoginFactory;
-use ALajusticia\Logins\Logins;
-use ALajusticia\Logins\RequestContext;
+use Adzinpratama\TrackingLogin\CurrentLogin;
+use Adzinpratama\TrackingLogin\Events\LoggedIn;
+use Adzinpratama\TrackingLogin\Factories\LoginFactory;
+use Adzinpratama\TrackingLogin\Logins;
+use Adzinpratama\TrackingLogin\RequestContext;
 use Illuminate\Events\Dispatcher;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Str;

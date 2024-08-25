@@ -1,10 +1,10 @@
 <?php
 
-namespace ALajusticia\Logins\Models;
+namespace Adzinpratama\TrackingLogin\Models;
 
 use ALajusticia\Expirable\Traits\Expirable;
-use ALajusticia\Logins\Scopes\LoginsScope;
-use ALajusticia\Logins\Traits\ManagesLogins;
+use Adzinpratama\TrackingLogin\Scopes\LoginsScope;
+use Adzinpratama\TrackingLogin\Traits\ManagesLogins;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -99,7 +99,7 @@ class Login extends Model
     protected function device(): Attribute
     {
         return Attribute::make(
-            get: fn (?string $value) => ! empty($value) ? $value : $this->personalAccessToken?->name,
+            get: fn(?string $value) => ! empty($value) ? $value : $this->personalAccessToken?->name,
         );
     }
 
@@ -117,7 +117,6 @@ class Login extends Model
 
             // Compare session ID
             return $this->session_id === request()->session()->getId();
-
         } elseif ($this->personal_access_token_id && request()->user()->isAuthenticatedBySanctumToken()) {
 
             // Compare Sanctum personal access token ID
@@ -162,7 +161,6 @@ class Login extends Model
             $this->destroySession($this->session_id);
 
             return $this->delete();
-
         } elseif ($this->personal_access_token_id) {
 
             // Revoke Sanctum personal access token

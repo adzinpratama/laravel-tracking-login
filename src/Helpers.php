@@ -1,6 +1,6 @@
 <?php
 
-namespace ALajusticia\Logins;
+namespace Adzinpratama\TrackingLogin;
 
 class Helpers
 {

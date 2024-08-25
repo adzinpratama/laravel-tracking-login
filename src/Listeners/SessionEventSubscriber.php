@@ -1,8 +1,8 @@
 <?php
 
-namespace ALajusticia\Logins\Listeners;
+namespace Adzinpratama\TrackingLogin\Listeners;
 
-use ALajusticia\Logins\Logins;
+use Adzinpratama\TrackingLogin\Logins;
 use Illuminate\Events\Dispatcher;
 use Illuminate\Support\Facades\Auth;
 

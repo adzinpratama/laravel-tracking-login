@@ -1,8 +1,8 @@
 <?php
 
-namespace ALajusticia\Logins\Parsers;
+namespace Adzinpratama\TrackingLogin\Parsers;
 
-use ALajusticia\Logins\Contracts\UserAgentParser;
+use Adzinpratama\TrackingLogin\Contracts\UserAgentParser;
 use Illuminate\Support\Facades\Request;
 use WhichBrowser\Parser;
 
@@ -36,7 +36,7 @@ class WhichBrowser implements UserAgentParser
      */
     protected function getDeviceByManufacturerAndModel(): ?string
     {
-        return trim($this->parser->device->getManufacturer().' '.$this->parser->device->getModel()) ?: null;
+        return trim($this->parser->device->getManufacturer() . ' ' . $this->parser->device->getModel()) ?: null;
     }
 
     /**

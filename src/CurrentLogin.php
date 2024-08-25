@@ -1,8 +1,8 @@
 <?php
 
-namespace ALajusticia\Logins;
+namespace Adzinpratama\TrackingLogin;
 
-use ALajusticia\Logins\Models\Login;
+use Adzinpratama\TrackingLogin\Models\Login;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
 
@@ -17,19 +17,18 @@ class CurrentLogin
 
     public function loadCurrentLogin(): void
     {
-        if (Auth::user() && Logins::tracked(Auth::user()) && ! $this->currentLogin) {
-            if (Auth::user()->isAuthenticatedBySession()) {
+        $user = Auth::user();
+        if ($user && Logins::tracked($user) && ! $this->currentLogin) {
+            if ($user->isAuthenticatedBySession()) {
 
-                $this->currentLogin = Auth::user()->logins()
+                $this->currentLogin = $user->logins()
                     ->where('session_id', session()->getId())
                     ->first();
-
-            } elseif (Config::get('logins.sanctum_token_tracking') && Auth::user()->isAuthenticatedBySanctumToken()) {
+            } elseif (Config::get('logins.sanctum_token_tracking') && $user->isAuthenticatedBySanctumToken()) {
 
                 $this->currentLogin = $this->logins()
-                    ->where('personal_access_token_id', Auth::user()->currentAccessToken()->getKey())
+                    ->where('personal_access_token_id', $user->currentAccessToken()->getKey())
                     ->first();
-
             }
         }
     }

@@ -1,8 +1,8 @@
 <?php
 
-namespace ALajusticia\Logins\Scopes;
+namespace Adzinpratama\TrackingLogin\Scopes;
 
-use ALajusticia\Logins\Traits\ManagesLogins;
+use Adzinpratama\TrackingLogin\Traits\ManagesLogins;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Scope;
@@ -14,9 +14,7 @@ class LoginsScope implements Scope
     /**
      * Apply the scope to a given Eloquent query builder.
      */
-    public function apply(Builder $builder, Model $model): void
-    {
-    }
+    public function apply(Builder $builder, Model $model): void {}
 
     /**
      * Extend the query builder with the needed functions.

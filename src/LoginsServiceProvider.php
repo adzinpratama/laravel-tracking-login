@@ -1,11 +1,11 @@
 <?php
 
-namespace ALajusticia\Logins;
+namespace Adzinpratama\TrackingLogin;
 
-use ALajusticia\Logins\Commands\Install;
-use ALajusticia\Logins\Events\LoggedIn;
-use ALajusticia\Logins\Listeners\SanctumEventSubscriber;
-use ALajusticia\Logins\Listeners\SessionEventSubscriber;
+use Adzinpratama\TrackingLogin\Commands\Install;
+use Adzinpratama\TrackingLogin\Events\LoggedIn;
+use Adzinpratama\TrackingLogin\Listeners\SanctumEventSubscriber;
+use Adzinpratama\TrackingLogin\Listeners\SessionEventSubscriber;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Blade;
@@ -23,7 +23,8 @@ class LoginsServiceProvider extends ServiceProvider
     {
         // Merge default config
         $this->mergeConfigFrom(
-            __DIR__.'/../config/logins.php', 'logins'
+            __DIR__ . '/../config/logins.php',
+            'logins'
         );
 
         // Register commands
@@ -43,7 +44,7 @@ class LoginsServiceProvider extends ServiceProvider
     {
         // Allow publishing config
         $this->publishes([
-            __DIR__.'/../config/logins.php' => config_path('logins.php'),
+            __DIR__ . '/../config/logins.php' => config_path('logins.php'),
         ], 'logins-config');
 
         // Load migrations
@@ -76,11 +77,11 @@ class LoginsServiceProvider extends ServiceProvider
         });
 
         // Load translations
-        $this->loadTranslationsFrom(__DIR__.'/../lang', 'logins');
+        $this->loadTranslationsFrom(__DIR__ . '/../lang', 'logins');
 
         // Allow publishing translations
         $this->publishes([
-            __DIR__.'/../lang' => $this->app->langPath('vendor/alajusticia/logins'),
+            __DIR__ . '/../lang' => $this->app->langPath('vendor/alajusticia/logins'),
         ], 'logins-lang');
     }
 

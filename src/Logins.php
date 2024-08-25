@@ -1,10 +1,10 @@
 <?php
 
-namespace ALajusticia\Logins;
+namespace Adzinpratama\TrackingLogin;
 
-use ALajusticia\Logins\Events\LoggedIn;
-use ALajusticia\Logins\Factories\LoginFactory;
-use ALajusticia\Logins\Models\Login;
+use Adzinpratama\TrackingLogin\Events\LoggedIn;
+use Adzinpratama\TrackingLogin\Factories\LoginFactory;
+use Adzinpratama\TrackingLogin\Models\Login;
 use Illuminate\Auth\Recaller;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Support\Facades\App;
@@ -49,7 +49,7 @@ class Logins
     public static function tracked(Authenticatable $model): bool
     {
         return in_array('ALajusticia\Logins\Traits\HasLogins', class_uses_recursive($model))
-               && $model->trackLogins;
+            && $model->trackLogins;
     }
 
     /**
@@ -67,14 +67,17 @@ class Logins
         string $guard,
         Authenticatable $user,
         bool $remember = false
-    ): void
-    {
+    ): void {
         // Get as much information as possible about the request
         $context = new RequestContext;
 
         // Build a new login
         $login = LoginFactory::buildFromLogin(
-            $context, $sessionId, $guard, $user, $remember
+            $context,
+            $sessionId,
+            $guard,
+            $user,
+            $remember
         );
 
         // Attach the login to the user and save it
@@ -106,7 +109,6 @@ class Logins
                         'session_id' => session()->getId(),
                         'last_activity_at' => now(),
                     ]);
-
                 } elseif ($recallerCookie = request()->cookies->get(Auth::guard()->getRecallerName())) {
                     // Authenticated via remember token
 

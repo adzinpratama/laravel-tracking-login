@@ -1,9 +1,9 @@
 <?php
 
-namespace ALajusticia\Logins;
+namespace Adzinpratama\TrackingLogin;
 
-use ALajusticia\Logins\Contracts\UserAgentParser;
-use ALajusticia\Logins\Factories\ParserFactory;
+use Adzinpratama\TrackingLogin\Contracts\UserAgentParser;
+use Adzinpratama\TrackingLogin\Factories\ParserFactory;
 use Carbon\Carbon;
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Support\Facades\Config;

@@ -1,5 +1,5 @@
 {
-    "name": "alajusticia/laravel-logins",
+    "name": "adzinpratama/laravel-tracking-logins",
     "description": "Sessions and Sanctum tokens tracking in Laravel apps, users notification on new login, multiple remember tokens, IP geolocation, User-Agent parser",
     "keywords": [
         "laravel",
@@ -18,6 +18,11 @@
             "name": "Anthony Lajusticia",
             "email": "anthonylajusticia@gmail.com",
             "homepage": "https://anthonylajusticia.com"
+        },
+        {
+            "name": "Hilmi Adzin Pratama",
+            "email": "contact.hapra@gmail.com",
+            "homepage": "https://github.com/adzinpratama"
         }
     ],
     "require": {
@@ -47,19 +52,19 @@
     },
     "autoload": {
         "psr-4": {
-            "ALajusticia\\Logins\\": "src"
+            "Adzinpratama\\TrackingLogin\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "ALajusticia\\Logins\\Tests\\": "tests",
-            "ALajusticia\\Logins\\Tests\\Database\\Factories\\": "tests/database/factories"
+            "Adzinpratama\\TrackingLogin\\Tests\\": "tests",
+            "Adzinpratama\\TrackingLogin\\Tests\\Database\\Factories\\": "tests/database/factories"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "ALajusticia\\Logins\\LoginsServiceProvider"
+                "Adzinpratama\\TrackingLogin\\LoginsServiceProvider"
             ]
         }
     }

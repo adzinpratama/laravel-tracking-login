@@ -1,8 +1,8 @@
 <?php
 
-namespace ALajusticia\Logins\Events;
+namespace Adzinpratama\TrackingLogin\Events;
 
-use ALajusticia\Logins\RequestContext;
+use Adzinpratama\TrackingLogin\RequestContext;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Queue\SerializesModels;
 

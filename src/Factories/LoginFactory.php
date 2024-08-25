@@ -1,9 +1,9 @@
 <?php
 
-namespace ALajusticia\Logins\Factories;
+namespace Adzinpratama\TrackingLogin\Factories;
 
-use ALajusticia\Logins\Models\Login;
-use ALajusticia\Logins\RequestContext;
+use Adzinpratama\TrackingLogin\Models\Login;
+use Adzinpratama\TrackingLogin\RequestContext;
 use Carbon\Carbon;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Support\Facades\Config;
@@ -17,8 +17,7 @@ class LoginFactory
         string $guard,
         Authenticatable $user,
         bool $remember,
-    ): Login
-    {
+    ): Login {
         $login = self::getNewLoginWithContext($context);
 
         $login->fill([
@@ -39,8 +38,7 @@ class LoginFactory
     public static function buildFromSanctumToken(
         RequestContext $context,
         HasAbilities $token
-    ): Login
-    {
+    ): Login {
         $login = self::getNewLoginWithContext($context);
 
         $login->personal_access_token_id = $token->getKey();

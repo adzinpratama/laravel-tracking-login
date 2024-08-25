@@ -1,8 +1,8 @@
 <?php
 
-namespace ALajusticia\Logins\Commands;
+namespace Adzinpratama\TrackingLogin\Commands;
 
-use ALajusticia\Logins\Helpers;
+use Adzinpratama\TrackingLogin\Helpers;
 use Illuminate\Console\Command;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Facades\Config;
@@ -36,11 +36,11 @@ class Install extends Command
             $this->line('Installing...' . "\n");
 
             $migrationPaths = [
-                'vendor/alajusticia/laravel-logins/database/migrations',
+                __DIR__ . '../../database/migrations',
             ];
 
             if (Helpers::sanctumIsInstalled()) {
-                $migrationPaths[] = 'vendor/alajusticia/laravel-logins/database/migrations/sanctum';
+                $migrationPaths[] = __DIR__ . '../../database/migrations/sanctum';
             }
 
             $options = [
@@ -65,8 +65,8 @@ class Install extends Command
                 (new Filesystem)->ensureDirectoryExists(app_path('Livewire'));
                 (new Filesystem)->ensureDirectoryExists(resource_path('views/livewire'));
 
-                copy(__DIR__.'/../../stubs/jetstream-livewire/app/Livewire/Logins.php', app_path('Livewire/Logins.php'));
-                copy(__DIR__.'/../../stubs/jetstream-livewire/resources/views/livewire/logins.blade.php', resource_path('views/livewire/logins.blade.php'));
+                copy(__DIR__ . '/../../stubs/jetstream-livewire/app/Livewire/Logins.php', app_path('Livewire/Logins.php'));
+                copy(__DIR__ . '/../../stubs/jetstream-livewire/resources/views/livewire/logins.blade.php', resource_path('views/livewire/logins.blade.php'));
             }
 
             $this->info('Installation was successful!');

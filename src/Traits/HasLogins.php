@@ -1,9 +1,9 @@
 <?php
 
-namespace ALajusticia\Logins\Traits;
+namespace Adzinpratama\TrackingLogin\Traits;
 
-use ALajusticia\Logins\CurrentLogin;
-use ALajusticia\Logins\Models\Login;
+use Adzinpratama\TrackingLogin\CurrentLogin;
+use Adzinpratama\TrackingLogin\Models\Login;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Laravel\Sanctum\HasApiTokens;
@@ -28,7 +28,7 @@ trait HasLogins
      */
     public function getCurrentLoginAttribute(): ?Login
     {
-        return app(CurrentLogin::class)->currentLogin;
+        return (new CurrentLogin())->currentLogin;
     }
 
     /**
@@ -51,22 +51,21 @@ trait HasLogins
         if ($this->isAuthenticatedBySession()) {
 
             return $this->logins()
-                        ->where(function (Builder $query) {
-                            return $query
-                                ->where('session_id', '!=', session()->getId())
-                                ->orWhereNull('session_id');
-                        })
-                        ->revoke();
-
+                ->where(function (Builder $query) {
+                    return $query
+                        ->where('session_id', '!=', session()->getId())
+                        ->orWhereNull('session_id');
+                })
+                ->revoke();
         } elseif ($this->isAuthenticatedBySanctumToken()) {
 
             return $this->logins()
-                        ->where(function (Builder $query) {
-                            return $query
-                                ->where('personal_access_token_id', '!=', $this->currentAccessToken()->getKey())
-                                ->orWhereNull('personal_access_token_id');
-                        })
-                        ->revoke();
+                ->where(function (Builder $query) {
+                    return $query
+                        ->where('personal_access_token_id', '!=', $this->currentAccessToken()->getKey())
+                        ->orWhereNull('personal_access_token_id');
+                })
+                ->revoke();
         }
 
         return false;

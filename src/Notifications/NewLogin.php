@@ -1,6 +1,6 @@
 <?php
 
-namespace ALajusticia\Logins\Notifications;
+namespace Adzinpratama\TrackingLogin\Notifications;
 
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
@@ -98,7 +98,8 @@ class NewLogin extends Notification
 
     protected function sendNotification($notifiable): bool
     {
-        if (! empty($notifiable->created_at)
+        if (
+            ! empty($notifiable->created_at)
             && $notifiable->created_at > now()->subMinutes(5) // The user has just been created
             && $notifiable->logins()->withExpired()->withTrashed()->count() === 1 // This is the first login
         ) {

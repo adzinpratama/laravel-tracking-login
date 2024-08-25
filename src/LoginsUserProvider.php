@@ -1,6 +1,6 @@
 <?php
 
-namespace ALajusticia\Logins;
+namespace Adzinpratama\TrackingLogin;
 
 use Illuminate\Auth\EloquentUserProvider;
 use Illuminate\Contracts\Auth\Authenticatable as UserContract;
@@ -20,7 +20,8 @@ class LoginsUserProvider extends EloquentUserProvider
         $model = $this->createModel();
 
         $retrievedModel = $this->newModelQuery($model)->with('logins')->where(
-            $model->getAuthIdentifierName(), $identifier
+            $model->getAuthIdentifierName(),
+            $identifier
         )->first();
 
         if (! $retrievedModel) {

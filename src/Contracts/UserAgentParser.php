@@ -1,6 +1,6 @@
 <?php
 
-namespace ALajusticia\Logins\Contracts;
+namespace Adzinpratama\TrackingLogin\Contracts;
 
 interface UserAgentParser
 {

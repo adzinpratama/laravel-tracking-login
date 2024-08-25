@@ -1,12 +1,13 @@
 <?php
 
-namespace ALajusticia\Logins;
+namespace Adzinpratama\TrackingLogin;
 
 use Illuminate\Auth\SessionGuard;
 
 class LoginsSessionGuard extends SessionGuard
 {
-    protected function deleteCurrentLogin() {
+    protected function deleteCurrentLogin()
+    {
         $user = $this->user();
 
         if ($user && Logins::tracked($user)) {

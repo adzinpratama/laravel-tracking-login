@@ -1,8 +1,8 @@
 <?php
 
-namespace ALajusticia\Logins\Parsers;
+namespace Adzinpratama\TrackingLogin\Parsers;
 
-use ALajusticia\Logins\Contracts\UserAgentParser;
+use Adzinpratama\TrackingLogin\Contracts\UserAgentParser;
 use Jenssegers\Agent\Agent as Parser;
 
 class Agent implements UserAgentParser
