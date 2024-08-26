@@ -2,6 +2,8 @@
 
 namespace Adzinpratama\TrackingLogin\Notifications;
 
+use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 use Illuminate\Support\Carbon;
@@ -9,8 +11,10 @@ use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\HtmlString;
 
-class NewLogin extends Notification
+class NewLogin extends Notification implements ShouldQueue
 {
+    use Queueable;
+
     /**
      * Create a new notification iŒnstance.
      */

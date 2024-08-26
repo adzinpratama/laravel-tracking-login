@@ -24,7 +24,13 @@ class SanctumEventSubscriber
     public function handlePersonalAccessTokenAuthentication(TokenAuthenticated $event): void
     {
         if (Logins::tracked($event->token->tokenable)) {
-            app(CurrentLogin::class)->loadCurrentLogin();
+            /**
+             * @var CurrentLogin $login
+             *  */
+            $login = app(CurrentLogin::class);
+            $login->auth = $event->token->tokenable;
+            $login->token = $event->token;
+            $login->loadCurrentLogin();
 
             Logins::updateLastActivity();
         }

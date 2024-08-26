@@ -13,7 +13,9 @@ return new class extends Migration
     {
         Schema::create('logins', function (Blueprint $table) {
             $table->id();
-            $table->morphs('authenticatable');
+            if (config('logins.authenticable_id') == 'uuid') $table->uuidMorphs('authenticatable');
+            else if (config('logins.authenticable_id') == 'ulid') $table->ulidMorphs('authenticatable');
+            else $table->morphs('authenticatable');
             $table->string('user_agent')->nullable();
             $table->string('ip_address')->nullable();
             $table->string('device_type')->nullable();

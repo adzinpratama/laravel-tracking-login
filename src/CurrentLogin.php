@@ -3,12 +3,17 @@
 namespace Adzinpratama\TrackingLogin;
 
 use Adzinpratama\TrackingLogin\Models\Login;
+use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
+use Laravel\Sanctum\PersonalAccessToken;
 
 class CurrentLogin
 {
     public ?Login $currentLogin = null;
+
+    public ?Authenticatable $auth = null;
+    public ?PersonalAccessToken $token = null;
 
     public function __construct()
     {
@@ -17,7 +22,8 @@ class CurrentLogin
 
     public function loadCurrentLogin(): void
     {
-        $user = Auth::user();
+        $user = $this->auth ?? Auth::user();
+
         if ($user && Logins::tracked($user) && ! $this->currentLogin) {
             if ($user->isAuthenticatedBySession()) {
 
@@ -26,8 +32,10 @@ class CurrentLogin
                     ->first();
             } elseif (Config::get('logins.sanctum_token_tracking') && $user->isAuthenticatedBySanctumToken()) {
 
-                $this->currentLogin = $this->logins()
-                    ->where('personal_access_token_id', $user->currentAccessToken()->getKey())
+                $token = $this->token ?? $user->currentAccessToken();
+
+                $this->currentLogin = $user->logins()
+                    ->where('personal_access_token_id', $token->getKey())
                     ->first();
             }
         }

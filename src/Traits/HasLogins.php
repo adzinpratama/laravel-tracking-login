@@ -28,7 +28,13 @@ trait HasLogins
      */
     public function getCurrentLoginAttribute(): ?Login
     {
-        return (new CurrentLogin())->currentLogin;
+        /**
+         * @var CurrentLogin $login
+         *  */
+        $login = app(CurrentLogin::class);
+        if (!$login->auth) $login->auth = $this;
+        $login->loadCurrentLogin();
+        return $login->currentLogin;
     }
 
     /**

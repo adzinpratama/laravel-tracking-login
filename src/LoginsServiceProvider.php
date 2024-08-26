@@ -81,7 +81,7 @@ class LoginsServiceProvider extends ServiceProvider
 
         // Allow publishing translations
         $this->publishes([
-            __DIR__ . '/../lang' => $this->app->langPath('vendor/alajusticia/logins'),
+            __DIR__ . '/../lang' => $this->app->langPath('vendor/adzinpratama/laravel-tracking-logins'),
         ], 'logins-lang');
     }
 

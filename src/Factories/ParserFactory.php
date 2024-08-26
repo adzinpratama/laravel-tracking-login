@@ -1,9 +1,9 @@
 <?php
 
-namespace ALajusticia\Logins\Factories;
+namespace Adzinpratama\TrackingLogin\Factories;
 
-use ALajusticia\Logins\Parsers\Agent;
-use ALajusticia\Logins\Parsers\WhichBrowser;
+use Adzinpratama\TrackingLogin\Parsers\Agent;
+use Adzinpratama\TrackingLogin\Parsers\WhichBrowser;
 
 class ParserFactory
 {
@@ -17,9 +17,12 @@ class ParserFactory
     public static function build($name)
     {
         switch ($name) {
-            case 'agent': return new Agent();
-            case 'whichbrowser': return new WhichBrowser();
-            default: throw new \Exception('Choose a supported User-Agent parser.');
+            case 'agent':
+                return new Agent();
+            case 'whichbrowser':
+                return new WhichBrowser();
+            default:
+                throw new \Exception('Choose a supported User-Agent parser.');
         }
     }
 }
